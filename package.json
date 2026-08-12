@@ -1,0 +1,17 @@
+{
+  "name": "nicbdev-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nicholas Burt's personal profile / resume site, hosted on GitHub Pages.",
+  "scripts": {
+    "test": "npm run test:html && npm run test:links && npm run test:privacy",
+    "test:html": "html-validate index.html",
+    "test:links": "node tests/test-links.mjs",
+    "test:privacy": "node tests/test-privacy.mjs",
+    "test:external-links": "node tests/check-external-links.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "html-validate": "^8.29.0"
+  }
+}
