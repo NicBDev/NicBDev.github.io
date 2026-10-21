@@ -1,11 +1,12 @@
-// Gate test: every local href/src referenced in index.html must resolve to a real file.
+// Gate test: every local href/src in the built page (_site/index.html) must resolve to a real file.
+// Run after `npm run build`.
 // Deterministic, no network calls — keeps this test free and fast (<2s).
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '..');
+const ROOT = resolve(__dirname, '..', '_site');
 const html = readFileSync(join(ROOT, 'index.html'), 'utf8');
 
 const attrPattern = /(?:href|src)="([^"]+)"/g;

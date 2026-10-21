@@ -1,5 +1,5 @@
 // Periodic check (not part of the gate suite): verifies every external link
-// in index.html actually resolves with a real network call. Run before ship
+// in the built page (_site/index.html) actually resolves with a real network call. Run before ship
 // and nightly via `npm run test:external-links` — allowed to be flaky/slow,
 // unlike the gate tests.
 import { readFileSync } from 'node:fs';
@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '..');
+const ROOT = resolve(__dirname, '..', '_site');
 const html = readFileSync(join(ROOT, 'index.html'), 'utf8');
 
 const attrPattern = /(?:href)="(https?:\/\/[^"]+)"/g;

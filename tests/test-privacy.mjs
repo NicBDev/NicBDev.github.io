@@ -11,13 +11,17 @@ const ROOT = resolve(__dirname, '..');
 const EMAIL_PATTERN = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 const PHONE_PATTERN = /(\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})/;
 
-const CHECK_EXTENSIONS = new Set(['.html', '.js', '.css', '.md']);
+// Content lives in JSON and templates in .njk, so both are scanned too.
+const CHECK_EXTENSIONS = new Set(['.html', '.js', '.css', '.md', '.json', '.njk']);
+// _site (the built, published output) is deliberately scanned: it is exactly what goes public.
 const SKIP_DIRS = new Set(['node_modules', '.git']);
+// npm-generated and never published; it contains package maintainers' emails.
+const SKIP_FILES = new Set(['package-lock.json']);
 
 function collectFiles(dir) {
   const out = [];
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (SKIP_DIRS.has(entry.name)) continue;
+    if (SKIP_DIRS.has(entry.name) || SKIP_FILES.has(entry.name)) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
       out.push(...collectFiles(full));
