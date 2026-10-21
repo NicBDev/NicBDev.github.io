@@ -1,0 +1,26 @@
+  <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
+    <div class="wrap">
+      <h2>{{ section.heading or section.label }}</h2>
+      <div class="edu-grid">
+        {%- for degree in education.degrees %}
+        <article class="card">
+          <h3>{{ degree.name }}</h3>
+          <p class="card-meta">{{ degree.school }}, {{ degree.location }} · {{ degree.year }}</p>
+          {%- if degree.description %}
+          <p>{{ degree.description }}</p>
+          {%- endif %}
+        </article>
+        {%- endfor %}
+        {%- if education.certifications.length %}
+        <article class="card">
+          <h3>Certifications</h3>
+          <ul class="cert-list">
+            {%- for cert in education.certifications | sortByYearDesc %}
+            <li><span>{{ cert.name }}</span><span class="cert-meta">{{ cert.issuer }} · {{ cert.year }}</span></li>
+            {%- endfor %}
+          </ul>
+        </article>
+        {%- endif %}
+      </div>
+    </div>
+  </section>

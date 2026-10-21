@@ -4,14 +4,22 @@
   "private": true,
   "description": "Nicholas Burt's personal profile / resume site, hosted on GitHub Pages.",
   "scripts": {
-    "test": "npm run test:html && npm run test:links && npm run test:privacy",
-    "test:html": "html-validate index.html",
+    "build": "eleventy",
+    "serve": "eleventy --serve --port=8000",
+    "test": "npm run test:content && npm run test:unit && npm run build && npm run test:html && npm run test:links && npm run test:render && npm run test:privacy",
+    "test:content": "node tests/validate-content.mjs",
+    "test:unit": "node --test tests/filters.test.mjs",
+    "test:html": "html-validate _site/index.html",
     "test:links": "node tests/test-links.mjs",
+    "test:render": "node tests/test-render.mjs",
     "test:privacy": "node tests/test-privacy.mjs",
-    "test:external-links": "node tests/check-external-links.mjs",
-    "serve": "python3 -m http.server 8000"
+    "test:external-links": "node tests/check-external-links.mjs"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "html-validate": "^8.29.0"
-  }
+  },
+  "type": "module"
 }

@@ -1,0 +1,18 @@
+  <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
+    <div class="wrap">
+      <h2>{{ section.heading or section.label }}</h2>
+      <div class="projects-grid">
+        {%- for project in projects.projects %}
+        <a class="project-card" href="{{ project.url }}" target="_blank" rel="noopener">
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description }}</p>
+          {%- if project.tags.length %}
+          <ul class="tags small">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+          {%- endif %}
+          <span class="card-link">View repository <span aria-hidden="true">→</span></span>
+        </a>
+        {%- endfor %}
+      </div>
+      <p class="more-projects">More on <a href="{{ projects.more.url }}" target="_blank" rel="noopener">{{ projects.more.label }}</a></p>
+    </div>
+  </section>
