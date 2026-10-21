@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/skills.schema.json",
+  "groups": [
+    {
+      "name": "Languages & Foundations",
+      "items": ["Python", "Swift", "Java", "JavaScript", "SQL", "AppleScript", "OOP", "Data Structures", "Algorithms"]
+    },
+    {
+      "name": "Testing & QA",
+      "items": ["XCTest / XCUI", "Selenium", "Regression Testing", "Functional Testing", "UI Automation", "Test Plan Design", "Xcode", "Charles Proxy", "Splunk"]
+    },
+    {
+      "name": "Cloud & Data",
+      "items": ["AWS RDS", "AWS Cognito", "AWS IAM", "Docker", "Data Lineage Validation", "Git"]
+    },
+    {
+      "name": "AI & Process",
+      "items": ["Claude Code", "Prompt Engineering", "GenAI-Assisted Development", "LLM Behavioral Evaluation", "ML Fundamentals", "SDLC", "Agile / Scrum"]
+    }
+  ]
+}
