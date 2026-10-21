@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/projects.schema.json",
+  "projects": [
+    {
+      "name": "iTunes API Test Suite",
+      "url": "https://github.com/NicBDev/iTunes-api-test-suite",
+      "description": "A Python/pytest suite testing the iTunes API — valid inputs, edge cases, error conditions, and schema validation. Built to demonstrate DRY, AAA-pattern tests, boundary conditions, and offline mock testing.",
+      "tags": ["Python", "pytest", "API Testing"]
+    },
+    {
+      "name": "SpendWise",
+      "url": "https://github.com/NicBDev/Expense-tracker",
+      "description": "A collaborative expense tracker with multi-user workspaces, scheduled exports, and shareable reports. Built with Next.js 14 (App Router), TypeScript, Prisma, Tailwind CSS, and NextAuth.",
+      "tags": ["Next.js", "TypeScript", "Prisma"]
+    }
+  ],
+  "more": {
+    "label": "github.com/NicBDev",
+    "url": "https://github.com/NicBDev"
+  }
+}

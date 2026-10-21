@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "education.schema.json",
+  "title": "Education",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["degrees", "certifications"],
+  "$defs": {
+    "year": { "type": "integer", "minimum": 1950, "maximum": 2100 }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "degrees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "school", "location", "year", "description"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "school": { "type": "string", "minLength": 1 },
+          "location": { "type": "string", "minLength": 1 },
+          "year": { "$ref": "#/$defs/year" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "description": "Any order; displayed newest first.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "issuer", "year"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "issuer": { "type": "string", "minLength": 1 },
+          "year": { "$ref": "#/$defs/year" }
+        }
+      }
+    }
+  }
+}

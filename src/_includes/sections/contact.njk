@@ -1,0 +1,14 @@
+  <section id="{{ section.id }}" class="section contact-section">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2>{{ profile.contact.heading }}</h2>
+        <p>{{ profile.contact.text }}</p>
+        <div class="hero-links">
+          {%- for item in profile.contact.links %}
+          {%- set link = profile.links | findLink(item.linkId) %}
+          <a class="btn{% if link.primary %} btn-primary{% endif %}" href="{{ link.url }}" target="_blank" rel="noopener">{{ item.label }}</a>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </section>

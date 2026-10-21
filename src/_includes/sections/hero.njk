@@ -1,0 +1,19 @@
+{% from "icons.njk" import icon %}
+  <section id="top" class="hero">
+    <div class="wrap">
+      <p class="eyebrow">{{ profile.jobTitle }} · {{ profile.company }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="hero-lead">{{ profile.lead }}</p>
+      <p class="hero-meta">{{ profile.location }} · {{ profile.educationSummary }}</p>
+      <div class="hero-links">
+        {%- for link in profile.links %}
+        <a class="btn{% if link.primary %} btn-primary{% endif %}" href="{{ link.url }}" target="_blank" rel="noopener">
+          {%- if link.icon != "none" %}
+          {{ icon(link.icon) }}
+          {%- endif %}
+          {{ link.label }}
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "experience.schema.json",
+  "title": "Experience",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["employers"],
+  "$defs": {
+    "month": { "type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])$", "description": "Use YYYY-MM, e.g. 2025-07" }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "employers": {
+      "type": "array",
+      "description": "Most recent employer first.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "roles"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "roles": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Most recent role first. The employer's date span and role count are calculated from these.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "team", "start", "end", "bullets"],
+              "properties": {
+                "title": { "type": "string", "minLength": 1 },
+                "team": { "type": "string" },
+                "start": { "$ref": "#/$defs/month" },
+                "end": { "type": ["string", "null"], "pattern": "^\\d{4}-(0[1-9]|1[0-2])$", "description": "Use YYYY-MM, e.g. 2025-06, or null for a current role (shown as Present)" },
+                "bullets": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">{{ profile.name }}</a>
+    <nav class="nav" aria-label="Primary">
+      {%- for section in site.sections | navSections %}
+      <a href="#{{ section.id }}">{{ section.label }}</a>
+      {%- endfor %}
+    </nav>
+    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

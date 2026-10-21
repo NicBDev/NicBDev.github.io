@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/experience.schema.json",
+  "employers": [
+    {
+      "name": "Apple",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "team": "IS&T Customer Systems (Guided Path)",
+          "start": "2025-07",
+          "end": null,
+          "bullets": [
+            "Extended an existing Swift/XCUI automation suite for the AppleCare purchase portal, implementing 63 automated test cases and contributing logic fixes across payment methods, subscription types, and international purchase flows under the guidance of senior engineers.",
+            "Validated end-to-end data integrity across a distributed pipeline of internal services, confirming case metadata, locale fields, and classification tags were correctly captured, transformed, and propagated to downstream reporting systems.",
+            "Contributed as a functional tester on a cross-team project involving an LLM-based voice assistant, executing behavioral validation of utterances and interaction scenarios to evaluate real-world AI performance.",
+            "Raised and tracked over 25 defects through internal issue tracking during functional testing, including Priority 1 bugs across AI assistant behavior, configuration, and integration scenarios.",
+            "Used Charles web proxy and Splunk to inspect API calls and application logs, supporting debugging and defect isolation during functional testing.",
+            "Applied AI-assisted development tools including Claude Code to write and review test scripts, navigate existing codebases, and align code with established team conventions."
+          ]
+        },
+        {
+          "title": "Software Engineer (Rotation)",
+          "team": "Modem Systems Test",
+          "start": "2025-02",
+          "end": "2025-06",
+          "bullets": [
+            "Contributed to an existing Python automation framework for baseband regression testing on prototype hardware, extending test scripts and resolving bugs alongside senior engineers to validate modem functionality across a range of testing conditions.",
+            "Maintained compatibility of existing Python test scripts by updating class references and library calls to reflect the latest internal framework versions, supporting test suite stability.",
+            "Tracked software defects using internal issue tracking, working closely with developers to troubleshoot and facilitate resolution, and delivered concise test coverage reports to stakeholders."
+          ]
+        },
+        {
+          "title": "Senior Advisor",
+          "team": "Multimedia Services",
+          "start": "2012-06",
+          "end": "2025-02",
+          "bullets": [
+            "Provided senior-level support across Apple's digital media ecosystem including Books, Podcasts, and Music, triaging customer-reported content issues and escalating to engineering teams for resolution.",
+            "Investigated account-level fraud and unauthorized access using internal security tooling, applying access-control interventions to protect customer accounts and prevent unauthorized activity across Apple's digital services platforms.",
+            "Handled Executive Relations and Customer Relations escalations, resolving high-stakes complaints requiring sound judgment and cross-functional coordination."
+          ]
+        }
+      ]
+    }
+  ]
+}

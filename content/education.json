@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/education.schema.json",
+  "degrees": [
+    {
+      "name": "B.S. Computer Science",
+      "school": "Sacramento State",
+      "location": "Sacramento, CA",
+      "year": 2024,
+      "description": "Capstone: designed, developed, tested, and deployed a full-stack Java/Spring Framework scheduling application for an Air National Guard Squadron. Architected the backend API and cloud data layer using AWS RDS for persistent storage and AWS Cognito/IAM for user authentication and access control, with end-to-end testing throughout."
+    }
+  ],
+  "certifications": [
+    { "name": "Claude Code: Software Engineering with Generative AI Agents", "issuer": "Vanderbilt University / Coursera", "year": 2026 },
+    { "name": "Swift Server Fundamentals", "issuer": "Apple Internal", "year": 2026 },
+    { "name": "Prompt Engineering for ChatGPT", "issuer": "Vanderbilt University / Coursera", "year": 2025 },
+    { "name": "Programming Fundamentals in Swift", "issuer": "Meta / Coursera", "year": 2024 }
+  ]
+}

@@ -1,0 +1,17 @@
+  <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
+    <div class="wrap">
+      <h2>{{ section.heading or section.label }}</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          {%- for paragraph in profile.about.paragraphs %}
+          <p>{{ paragraph }}</p>
+          {%- endfor %}
+        </div>
+        <ul class="about-facts">
+          {%- for fact in profile.about.facts %}
+          <li><span>{{ fact.label }}</span>{{ fact.value }}</li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>

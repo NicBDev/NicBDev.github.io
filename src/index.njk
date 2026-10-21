@@ -1,0 +1,8 @@
+---
+layout: base.njk
+permalink: /index.html
+---
+{# Sections render in the order set in content/site.json; disabled ones are skipped. #}
+{%- for section in site.sections | enabledSections %}
+{% include "sections/" + section.id + ".njk" %}
+{%- endfor %}

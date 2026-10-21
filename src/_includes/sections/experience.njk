@@ -1,0 +1,34 @@
+  <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
+    <div class="wrap">
+      <h2>{{ section.heading or section.label }}</h2>
+      {%- for employer in experience.employers %}
+      {%- set span = employer.roles | employerSpan %}
+
+      <div class="employer">
+        <div class="employer-head">
+          <h3>{{ employer.name }}</h3>
+          <p class="employer-meta">{{ span.start | dateRange(span.end) }} · {{ employer.roles.length | pluralize("role") }}</p>
+        </div>
+
+        <ol class="timeline">
+          {%- for role in employer.roles %}
+          <li class="job">
+            <div class="job-head">
+              <h4>{{ role.title }}</h4>
+              <p class="job-dates">{{ role.start | dateRange(role.end) }}</p>
+            </div>
+            {%- if role.team %}
+            <p class="job-team">{{ role.team }}</p>
+            {%- endif %}
+            <ul>
+              {%- for bullet in role.bullets %}
+              <li>{{ bullet }}</li>
+              {%- endfor %}
+            </ul>
+          </li>
+          {%- endfor %}
+        </ol>
+      </div>
+      {%- endfor %}
+    </div>
+  </section>
