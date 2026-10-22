@@ -3,7 +3,7 @@
   "name": "Nicholas Burt",
   "jobTitle": "Software Engineer",
   "company": "Apple",
-  "lead": "I build and test production systems in Swift, Python, and Java, with a focus on test automation and data integrity across distributed service pipelines.",
+  "lead": "I'm a software engineer with experience spanning Apple's engineering and customer systems groups. My work focuses on Swift/XCUI test automation, data integrity across distributed service pipelines, and behavioral validation for AI-assisted systems, backed by a BS in Computer Science and full-stack cloud development",
   "location": "Santa Clara, CA area",
   "educationSummary": "B.S. Computer Science, Sacramento State",
   "links": [
@@ -13,9 +13,10 @@
   ],
   "about": {
     "paragraphs": [
-      "I'm a software engineer in Apple's IS&T Customer Systems group. My work spans Swift/XCUI automation, cross-system data integrity validation across distributed service pipelines, and behavioral testing of an LLM-based voice assistant. Before that I built a full-stack cloud application (AWS RDS, Cognito, IAM) as my academic capstone.",
-      "I work best digging into logs and data rather than relying on assumptions — tracing a bug back through a distributed pipeline until the root cause is undeniable. I like building systems and processes that make repeated work easier, and I'm comfortable picking up new tools on the job. Lately that's meant pairing traditional test automation with AI-assisted engineering workflows: using Claude Code to navigate unfamiliar codebases, draft and review test scripts, and keep work aligned with team conventions."
-    ],
+      "I fell in love with programming when I learned how to automate away repetitive tasks at work. Back then, I didn’t know much about software development, but I could immediately see the power in handing labor over to code. My earliest automations were crude: direct mouse and keyboard manipulations and quick JavaScript snippets. They broke constantly. A dropped network connection, a slight shift in the OS or UI, or an unexpected data type would bring everything down. That friction taught me an essential lesson early on: writing good software is challenging not because of syntax, but because it has to contend with the real world in all its messy glory.",
+      "Studying Computer Science transformed my practical curiosity into formal engineering. I learned how to represent the physical world through abstract models and define truth inside closed systems. I explored the creative capabilities of game programming, studied coordinated communication protocols across networks, and learned to manage conceptual complexity through object-oriented design.",
+      "I graduated knowing I had built a strong foundation, but also convinced that there was still so much more to master. Moving into enterprise software development, I see how much that balance really counts. At enterprise scale, it is no longer just about writing code that works in isolation. It is about building resilient, maintainable systems that can absorb unexpected failures, adapt to evolving scale, and deliver dependability where it matters most."  
+      ],
     "facts": [
       { "label": "Role", "value": "Software Engineer, IS&T Customer Systems @ Apple" },
       { "label": "Location", "value": "Santa Clara, CA area" },
