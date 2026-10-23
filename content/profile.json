@@ -9,7 +9,7 @@
   "links": [
     { "id": "linkedin", "label": "LinkedIn", "url": "https://linkedin.com/in/nicholas-w-burt", "icon": "linkedin", "primary": true },
     { "id": "github", "label": "GitHub", "url": "https://github.com/NicBDev", "icon": "github", "primary": false },
-    { "id": "resume", "label": "Get Resume", "url": "https://docs.google.com/document/d/17sx3yBcaRA0qfDNEySnXYD-C7CSR2kLrg3Gka1Cl86g/edit?usp=sharing", "icon": "document", "primary": false }
+    { "id": "resume", "label": "My Resume", "url": "https://drive.google.com/file/d/1AbCQZ8oD7dJMMFZeotutB4OnfSL5ojwH/view?usp=share_link", "icon": "document", "primary": false }
   ],
   "about": {
     "paragraphs": [
