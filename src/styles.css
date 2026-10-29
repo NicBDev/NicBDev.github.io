@@ -158,6 +158,41 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .icon { width: 16px; height: 16px; }
 
+/* Section cards (below the hero buttons) */
+.section-tiles { margin-top: 48px; }
+.section-tiles ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.tile {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 12px;
+  min-height: 72px;
+  height: 100%;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.tile:hover { text-decoration: none; border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.tile-title { font-weight: 600; font-size: 1.02rem; }
+.tile-summary { grid-column: 1; font-size: 0.88rem; color: var(--text-faint); }
+.tile-arrow { grid-column: 2; grid-row: 1 / span 2; color: var(--accent); font-size: 1.15rem; transition: transform 0.15s ease; }
+.tile:hover .tile-arrow { transform: translateX(3px); }
+.tile:focus-visible { border-radius: var(--radius); }
+@media (prefers-reduced-motion: reduce) {
+  .tile:hover, .tile:hover .tile-arrow { transform: none; }
+}
+
 
 /* Sections */
 .section { padding: 88px 0; }
@@ -310,6 +345,9 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
   .nav a { padding: 14px 24px; border-top: 1px solid var(--border); }
   .nav-toggle { display: flex; }
   .hero { padding: 72px 0 24px; }
+  .section-tiles { margin-top: 36px; }
+  .section-tiles ul { grid-template-columns: 1fr; gap: 10px; }
+  .tile { min-height: 64px; }
   .section { padding: 64px 0; }
   .hero + .section { padding-top: 40px; }
   .about-grid,
@@ -326,7 +364,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 /* Print: a clean one-column résumé */
 @media print {
   :root { --bg: #fff; --bg-alt: #fff; --surface: #fff; --shadow: none; }
-  .site-header, .skip-link, .hero-links, .contact-section, .card-link { display: none; }
+  .site-header, .skip-link, .hero-links, .section-tiles, .contact-section, .card-link { display: none; }
   .hero, .section { padding: 24px 0; }
   .section.alt { border: none; }
   .project-card, .job, .card { break-inside: avoid; }

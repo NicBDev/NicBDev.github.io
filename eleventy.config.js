@@ -22,6 +22,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('sortByYearDesc', filters.sortByYearDesc);
   eleventyConfig.addFilter('enabledSections', filters.enabledSections);
   eleventyConfig.addFilter('navSections', filters.navSections);
+  eleventyConfig.addFilter('tileSections', filters.tileSections);
+  eleventyConfig.addFilter('sectionSummary', filters.sectionSummary);
   eleventyConfig.addFilter('findLink', filters.findLink);
   eleventyConfig.addFilter('personJsonLd', filters.personJsonLd);
 

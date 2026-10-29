@@ -1,5 +1,6 @@
 // Gate test: the built page (_site/index.html) reflects the content files. Every role, project,
-// skill and certification appears, disabled sections are absent, and the nav matches site.json.
+// skill and certification appears, disabled sections are absent, and the nav and section cards
+// match site.json.
 // Run after `npm run build`.
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -49,6 +50,15 @@ const expectedNav = site.sections.filter((s) => s.enabled && s.nav).map((s) => s
 checked += 1;
 if (navIds.join(',') !== expectedNav.join(',')) {
   failures.push(`nav order is [${navIds.join(', ')}], expected [${expectedNav.join(', ')}]`);
+}
+
+// Section cards: one per enabled section with tile: true, in config order, linking to it.
+const tilesHtml = html.match(/<nav class="section-tiles"[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+const tileIds = [...tilesHtml.matchAll(/<a class="tile" href="#([^"]+)"/g)].map((m) => m[1]);
+const expectedTiles = site.sections.filter((s) => s.enabled && s.tile).map((s) => s.id);
+checked += 1;
+if (tileIds.join(',') !== expectedTiles.join(',')) {
+  failures.push(`section cards are [${tileIds.join(', ')}], expected [${expectedTiles.join(', ')}]`);
 }
 
 expectText(profile.name, 'profile name');

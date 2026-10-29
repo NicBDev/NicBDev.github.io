@@ -29,7 +29,8 @@
     "text": "The fastest way to reach me is LinkedIn, or open an issue / PR on anything you find on my GitHub.",
     "links": [
       { "linkId": "linkedin", "label": "Connect on LinkedIn" },
-      { "linkId": "github", "label": "View GitHub" }
+      { "linkId": "github", "label": "View GitHub" },
+      { "linkId": "resume", "label": "My Resume" }
     ]
   }
 }

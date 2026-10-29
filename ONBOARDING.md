@@ -159,7 +159,7 @@ Links are defined **once**, in `profile.links`, and reused by the top buttons, t
 Everything is in `content/site.json` → `sections`:
 
 ```json
-{ "id": "education", "label": "Education", "heading": "Education & Certifications", "enabled": true, "nav": true }
+{ "id": "education", "label": "Education", "heading": "Education & Certifications", "enabled": true, "nav": true, "tile": true }
 ```
 
 | To… | Do this |
@@ -169,8 +169,10 @@ Everything is in `content/site.json` → `sections`:
 | Change the nav text | Edit `label` |
 | Use a longer heading on the page | Add `heading` (otherwise `label` is used) |
 | Keep it on the page but out of the nav | `"nav": false` |
+| Show or hide its card in the button grid below the hero | `"tile": true` / `false` |
+| Change the card's subtitle | Add `"description": "…"`. Otherwise it's calculated from the content (e.g. "3 roles at Apple", "2 projects") |
 
-Backgrounds keep alternating correctly no matter what you hide or move.
+Backgrounds keep alternating correctly, and the cards follow the same order, no matter what you hide or move.
 
 [↑ Back to contents](#contents)
 

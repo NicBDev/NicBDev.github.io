@@ -26,6 +26,7 @@ npm run test:external-links  # network check of external hrefs in _site (not a g
 - **Sections:** `src/index.njk` loops over `site.sections | enabledSections` and includes `src/_includes/sections/<id>.njk`. The section order, `enabled`, `nav` and an optional `heading` all come from `content/site.json`.
   - The nav (`header.njk`) is generated from the same list.
   - The `alt` background is computed by position (`enabledSections` in `src/lib/filters.js`). Never hard-code `section alt`. `hero` and `contact` sit outside the alternation.
+  - The card grid below the hero buttons (`src/_includes/section-tiles.njk`, included from `sections/hero.njk`) lists the sections with `tile: true`. Each card's subtitle comes from `sectionSummary`: a section's `description` in `site.json` wins; otherwise it's calculated from the content. Unknown ids get an empty string.
   - A new section needs: an id in the `site.schema.json` enum, a partial in `sections/`, and an entry in `site.json`.
 - **Derived, not stored:** date strings ("Jul 2025 — Present"), employer span, role counts, certification ordering, nav and backgrounds are all computed by the helpers in `src/lib/filters.js`. Content stores only facts (`YYYY-MM` dates, `null` end = Present).
 - **Links are defined once** in `profile.links` (`id`, `url`, `icon`, `primary`). The contact section references them by `linkId` (resolved with `findLink`). JSON-LD `sameAs` uses every link except `resume`.

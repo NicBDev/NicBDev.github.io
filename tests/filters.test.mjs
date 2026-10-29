@@ -11,6 +11,8 @@ import {
   navSections,
   findLink,
   personJsonLd,
+  tileSections,
+  sectionSummary,
 } from '../src/lib/filters.js';
 
 test('formatMonth formats YYYY-MM and treats null as Present', () => {
@@ -107,4 +109,53 @@ test('personJsonLd builds a schema.org Person and escapes "<"', () => {
   assert.deepEqual(data.sameAs, ['https://github.com/x']);
   assert.deepEqual(data.knowsAbout, ['A', 'B', 'C']);
   assert.equal(data.alumniOf[0].name, 'State U');
+});
+
+test('tileSections keeps enabled sections with tile: true, in config order', () => {
+  const config = [
+    { id: 'hero', enabled: true, nav: false, tile: false },
+    { id: 'about', enabled: true, nav: true, tile: true },
+    { id: 'skills', enabled: false, nav: true, tile: true },
+    { id: 'projects', enabled: true, nav: true, tile: true },
+    { id: 'contact', enabled: true, nav: true, tile: false },
+  ];
+  assert.deepEqual(tileSections(config).map((s) => s.id), ['about', 'projects']);
+});
+
+const summaryData = {
+  experience: { employers: [{ name: 'Apple', roles: [{}, {}, {}] }] },
+  skills: { groups: [{ items: ['a', 'b'] }, { items: ['c'] }] },
+  projects: { projects: [{}, {}] },
+  education: { degrees: [{ name: 'B.S. Computer Science' }], certifications: [{}, {}, {}, {}] },
+  profile: {
+    links: [
+      { id: 'linkedin', label: 'LinkedIn' },
+      { id: 'github', label: 'GitHub' },
+      { id: 'resume', label: 'My Resume' },
+    ],
+    contact: { links: [{ linkId: 'linkedin' }, { linkId: 'resume' }] },
+  },
+};
+
+test('sectionSummary calculates card subtitles from the content', () => {
+  assert.equal(sectionSummary({ id: 'experience' }, summaryData), '3 roles at Apple');
+  assert.equal(sectionSummary({ id: 'skills' }, summaryData), '2 groups · 3 skills');
+  assert.equal(sectionSummary({ id: 'projects' }, summaryData), '2 projects');
+  assert.equal(sectionSummary({ id: 'education' }, summaryData), 'B.S. Computer Science · 4 certifications');
+  assert.equal(sectionSummary({ id: 'contact' }, summaryData), 'LinkedIn · My Resume');
+});
+
+test('sectionSummary handles several employers and singular counts', () => {
+  const data = {
+    ...summaryData,
+    experience: { employers: [{ name: 'Acme', roles: [{}] }, { name: 'Apple', roles: [{}, {}] }] },
+    projects: { projects: [{}] },
+  };
+  assert.equal(sectionSummary({ id: 'experience' }, data), '3 roles across 2 employers');
+  assert.equal(sectionSummary({ id: 'projects' }, data), '1 project');
+});
+
+test('sectionSummary prefers a configured description, and is empty for unknown sections', () => {
+  assert.equal(sectionSummary({ id: 'projects', description: 'Things I built' }, summaryData), 'Things I built');
+  assert.equal(sectionSummary({ id: 'talks' }, summaryData), '');
 });

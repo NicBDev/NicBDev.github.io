@@ -1,0 +1,15 @@
+{# Card grid linking to each section with "tile": true in content/site.json, in config order. #}
+{%- set summaryData = { experience: experience, skills: skills, projects: projects, education: education, profile: profile } %}
+      <nav class="section-tiles" aria-label="Sections">
+        <ul>
+          {%- for section in site.sections | tileSections %}
+          <li>
+            <a class="tile" href="#{{ section.id }}">
+              <span class="tile-title">{{ section.label }}</span>
+              <span class="tile-summary">{{ section | sectionSummary(summaryData) }}</span>
+              <span class="tile-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>

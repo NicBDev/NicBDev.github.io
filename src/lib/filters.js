@@ -83,3 +83,39 @@ export function personJsonLd({ site, profile, education, skills }) {
   // Escape "<" so content can never close the surrounding <script> tag.
   return JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
 }
+
+// Sections that get a card in the button grid, in config order.
+export function tileSections(sections) {
+  return enabledSections(sections).filter((s) => s.tile);
+}
+
+// One-line card subtitle. A `description` in site.json always wins; otherwise it's
+// calculated from the content so it never goes stale. Unknown sections get "".
+export function sectionSummary(section, data) {
+  if (section.description) return section.description;
+  const { experience, skills, projects, education, profile } = data;
+  switch (section.id) {
+    case 'experience': {
+      const employers = experience.employers;
+      const roles = employers.reduce((n, e) => n + e.roles.length, 0);
+      return employers.length === 1
+        ? `${pluralize(roles, 'role')} at ${employers[0].name}`
+        : `${pluralize(roles, 'role')} across ${pluralize(employers.length, 'employer')}`;
+    }
+    case 'skills': {
+      const items = skills.groups.reduce((n, g) => n + g.items.length, 0);
+      return `${pluralize(skills.groups.length, 'group')} · ${pluralize(items, 'skill')}`;
+    }
+    case 'projects':
+      return pluralize(projects.projects.length, 'project');
+    case 'education': {
+      const parts = education.degrees.map((d) => d.name);
+      if (education.certifications.length) parts.push(pluralize(education.certifications.length, 'certification'));
+      return parts.join(' · ');
+    }
+    case 'contact':
+      return profile.contact.links.map((item) => findLink(profile.links, item.linkId).label).join(' · ');
+    default:
+      return '';
+  }
+}
