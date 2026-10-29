@@ -119,3 +119,19 @@ export function sectionSummary(section, data) {
       return '';
   }
 }
+
+// Attach each item's previous and next neighbour ({ id, label } or null), for prev/next links.
+export function withNeighbors(items) {
+  const brief = (item) => (item ? { id: item.id, label: item.label } : null);
+  return items.map((item, i) => ({ ...item, prev: brief(items[i - 1]), next: brief(items[i + 1]) }));
+}
+
+// URL of a section's own page, e.g. "experience" -> "/experience/".
+export function sectionUrl(id) {
+  return `/${id}/`;
+}
+
+// Absolute URL for canonical/og:url, e.g. ("/experience/", "https://x.dev/") -> "https://x.dev/experience/".
+export function absoluteUrl(path, base) {
+  return new URL(path, base).href;
+}

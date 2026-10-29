@@ -81,7 +81,7 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-height: 1.25; }
+h1, h2, h3, h4, h5 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-height: 1.25; }
 
 /* Header */
 .site-header {
@@ -104,6 +104,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 .nav { display: flex; gap: 28px; }
 .nav a { font-size: 0.92rem; font-weight: 500; color: var(--text-dim); }
 .nav a:hover { color: var(--text); text-decoration: none; }
+.nav a[aria-current="page"] { color: var(--accent); }
 
 .nav-toggle {
   display: none;
@@ -124,6 +125,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 
 /* Hero */
 .hero { padding: 112px 0 40px; }
+main > .hero:last-child { padding-bottom: 96px; }
 .eyebrow {
   display: inline-block;
   margin: 0 0 20px;
@@ -194,11 +196,36 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 }
 
 
+/* Section pages: back link and previous/next */
+.page-intro { padding-top: 40px; }
+.page-intro + .section { padding-top: 24px; }
+.back-link { display: inline-flex; gap: 6px; font-size: 0.95rem; font-weight: 600; }
+.pager { padding: 0 0 72px; }
+.pager-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 200px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+.pager-link:hover { text-decoration: none; border-color: var(--accent); }
+.pager-next { margin-left: auto; text-align: right; }
+.pager-label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); }
+.pager-title { font-weight: 600; color: var(--accent); }
+
+.not-found { padding-bottom: 88px; }
+
 /* Sections */
 .section { padding: 88px 0; }
 .hero + .section { padding-top: 48px; }
 .section.alt { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.section h2 { font-size: clamp(1.6rem, 3vw, 2rem); margin-bottom: 40px; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2rem); margin-bottom: 40px; }
 
 .card,
 .job,
@@ -234,7 +261,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 
 /* Experience */
 .employer-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-.employer-head h3 { font-size: 1.35rem; }
+.employer-name { font-size: 1.35rem; }
 .employer-meta { margin: 0; color: var(--text-faint); font-size: 0.95rem; }
 
 .timeline {
@@ -260,7 +287,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 }
 .job:first-child::before { background: var(--accent); }
 .job-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; }
-.job h4 { font-size: 1.15rem; }
+.job-title { font-size: 1.15rem; }
 .job-dates { margin: 0; color: var(--text-faint); font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
 .job-team { margin: 4px 0 16px; color: var(--accent); font-weight: 500; font-size: 0.95rem; }
 .job ul { margin: 0; padding-left: 20px; color: var(--text-dim); }
@@ -270,7 +297,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 
 /* Skills */
 .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; }
-.skill-group h3 { font-size: 0.95rem; margin-bottom: 14px; }
+.group-title { font-size: 0.95rem; margin-bottom: 14px; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags li {
   font-size: 0.84rem;
@@ -293,7 +320,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
   transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 .project-card:hover { text-decoration: none; border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-.project-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.project-title { font-size: 1.15rem; margin-bottom: 10px; }
 .project-card p { color: var(--text-dim); font-size: 0.95rem; margin: 0 0 18px; }
 .card-link { margin-top: auto; padding-top: 18px; font-size: 0.9rem; font-weight: 600; color: var(--accent); }
 .more-projects { margin: 32px 0 0; color: var(--text-dim); font-size: 0.95rem; }
@@ -301,7 +328,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 /* Education */
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .card { padding: 28px; }
-.card h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.card-title { font-size: 1.15rem; margin-bottom: 6px; }
 .card-meta { margin: 0 0 14px; color: var(--text-faint); font-size: 0.9rem; }
 .card p { color: var(--text-dim); font-size: 0.95rem; }
 .card p:last-child { margin-bottom: 0; }
@@ -317,7 +344,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
   background: var(--accent-soft);
   border-radius: 20px;
 }
-.contact-section h2 { margin-bottom: 12px; }
+.contact-section .section-title { margin-bottom: 12px; }
 .contact-card p { max-width: 520px; margin: 0 auto; color: var(--text-dim); font-size: 1.05rem; }
 .contact-card .hero-links { justify-content: center; }
 
@@ -346,6 +373,8 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
   .nav-toggle { display: flex; }
   .hero { padding: 72px 0 24px; }
   .section-tiles { margin-top: 36px; }
+  .page-intro { padding-top: 24px; }
+  .pager-link { flex: 1 1 100%; min-width: 0; }
   .section-tiles ul { grid-template-columns: 1fr; gap: 10px; }
   .tile { min-height: 64px; }
   .section { padding: 64px 0; }
@@ -364,7 +393,7 @@ h1, h2, h3, h4 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-heig
 /* Print: a clean one-column résumé */
 @media print {
   :root { --bg: #fff; --bg-alt: #fff; --surface: #fff; --shadow: none; }
-  .site-header, .skip-link, .hero-links, .section-tiles, .contact-section, .card-link { display: none; }
+  .site-header, .skip-link, .hero-links, .section-tiles, .contact-section, .card-link, .page-intro, .pager { display: none; }
   .hero, .section { padding: 24px 0; }
   .section.alt { border: none; }
   .project-card, .job, .card { break-inside: avoid; }

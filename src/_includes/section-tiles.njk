@@ -4,7 +4,7 @@
         <ul>
           {%- for section in site.sections | tileSections %}
           <li>
-            <a class="tile" href="#{{ section.id }}">
+            <a class="tile" href="{{ section.id | sectionUrl }}">
               <span class="tile-title">{{ section.label }}</span>
               <span class="tile-summary">{{ section | sectionSummary(summaryData) }}</span>
               <span class="tile-arrow" aria-hidden="true">→</span>

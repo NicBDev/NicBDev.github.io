@@ -1,7 +1,9 @@
+{#- Heading levels shift with headingLevel (2 on the home page, 1 on a section's own page). #}
+{%- set h = headingLevel or 2 %}
   <section id="{{ section.id }}" class="section contact-section">
     <div class="wrap">
       <div class="contact-card">
-        <h2>{{ profile.contact.heading }}</h2>
+        <h{{ h }} class="section-title">{{ profile.contact.heading }}</h{{ h }}>
         <p>{{ profile.contact.text }}</p>
         <div class="hero-links">
           {%- for item in profile.contact.links %}

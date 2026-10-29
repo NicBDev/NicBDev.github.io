@@ -23,7 +23,7 @@ A guide to maintaining and changing this site, written for someone taking over d
 The site separates **what it says** from **how it looks**:
 
 ```
-content/*.json  ──►  src/ templates (.njk)  ──►  Eleventy build  ──►  _site/index.html  ──►  GitHub Pages
+content/*.json  ──►  src/ templates (.njk)  ──►  Eleventy build  ──►  _site/ (home + one page per section)  ──►  GitHub Pages
   (the facts)         (the HTML structure)                              (what visitors get)
 ```
 
@@ -164,7 +164,7 @@ Everything is in `content/site.json` → `sections`:
 
 | To… | Do this |
 |---|---|
-| Hide a section | `"enabled": false`. It disappears from the page *and* the nav. |
+| Hide a section | `"enabled": false`. Its page, card and nav link all disappear. |
 | Reorder | Move its line up or down in the list |
 | Change the nav text | Edit `label` |
 | Use a longer heading on the page | Add `heading` (otherwise `label` is used) |
@@ -172,7 +172,7 @@ Everything is in `content/site.json` → `sections`:
 | Show or hide its card in the button grid below the hero | `"tile": true` / `false` |
 | Change the card's subtitle | Add `"description": "…"`. Otherwise it's calculated from the content (e.g. "3 roles at Apple", "2 projects") |
 
-Backgrounds keep alternating correctly, and the cards follow the same order, no matter what you hide or move.
+The cards, the nav and the Previous/Next buttons all follow this order, no matter what you hide or move.
 
 [↑ Back to contents](#contents)
 
@@ -200,12 +200,16 @@ Templates are HTML with placeholders. They live in `src/_includes/`, use the **N
 | `{{ role.start \| dateRange(role.end) }}` | Pass a value through a **filter** (a helper from `src/lib/filters.js`) |
 | `{# … #}` | Comment, not output |
 
-How the page is assembled:
+How the site is assembled:
 
-- `src/_includes/base.njk`: the `<head>` (title, SEO, link previews, structured data) and page shell
-- `src/_includes/header.njk` / `footer.njk`: the top bar (nav built from `site.json`) and footer
-- `src/index.njk`: loops over the enabled sections and includes `sections/<id>.njk` for each
-- `src/_includes/sections/*.njk`: one file per section
+- `src/_includes/base.njk`: the `<head>` (page title, SEO, link previews, structured data) and page shell
+- `src/_includes/header.njk` / `footer.njk`: the top bar (nav built from `site.json`, current page highlighted) and footer
+- `src/index.njk`: the **home page**: your name, blurb, link buttons and the section cards (`section-tiles.njk`)
+- `src/section-page.njk`: makes **one page per section** (`/experience/`, `/projects/`, …) from the list in `site.json`, each with a "← Home" link and Previous/Next buttons
+- `src/_includes/sections/*.njk`: one file per section's content, used by its page
+- `src/404.njk`: the "Page not found" page
+
+You never create a page by hand. Enable a section in `site.json` and its page, card, nav link and sitemap entry all appear.
 
 **Adding a brand-new section type** (e.g. "Talks") takes four steps:
 
@@ -314,9 +318,9 @@ npm test        # run before every commit
 | 1. Content check | `npm run test:content` | JSON typos, missing fields, misspelled keys, bad dates (`2025-13`), unknown icons, contact links pointing at a missing link id, end dates before start dates |
 | 2. Unit tests | `npm run test:unit` | Bugs in the helper functions (date formatting, sorting, section logic) |
 | 3. Build | `npm run build` | Template errors |
-| 4. HTML validation | `npm run test:html` | Invalid markup in the built page |
-| 5. Local links | `npm run test:links` | Links to files that don't exist |
-| 6. Render check | `npm run test:render` | Something in the JSON that didn't make it onto the page; a hidden section that still shows; nav order wrong |
+| 4. HTML validation | `npm run test:html` | Invalid markup on any built page |
+| 5. Local links | `npm run test:links` | Links to pages or files that don't exist, on any page |
+| 6. Render check | `npm run test:render` | Something in the JSON that didn't make it onto its page; a hidden section whose page still exists; cards, nav or Previous/Next in the wrong order |
 | 7. Privacy guard | `npm run test:privacy` | Any email address or phone number, in the sources *or* the built page |
 
 Failures tell you exactly where the problem is:
@@ -432,6 +436,8 @@ gh pr create --fill               # open a pull request
 | Section order/visibility, page title, SEO text | `content/site.json` |
 | Allowed fields / validation rules | `schemas/*.schema.json` |
 | A section's HTML structure | `src/_includes/sections/<id>.njk` |
+| Section page layout (back link, Previous/Next) | `src/section-page.njk` |
+| The home page / section cards | `src/index.njk`, `src/_includes/section-tiles.njk` |
 | `<head>`, link previews, structured data | `src/_includes/base.njk` |
 | Colours, spacing, fonts, layout | `src/styles.css` |
 | Phone layout | `src/styles.css` → `@media (max-width: 760px)` |

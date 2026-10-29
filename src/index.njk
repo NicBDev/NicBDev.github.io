@@ -2,7 +2,5 @@
 layout: base.njk
 permalink: /index.html
 ---
-{# Sections render in the order set in content/site.json; disabled ones are skipped. #}
-{%- for section in site.sections | enabledSections %}
-{% include "sections/" + section.id + ".njk" %}
-{%- endfor %}
+{# Home: name, blurb, links and the section cards. Each section has its own page (src/section-page.njk). #}
+{% include "sections/hero.njk" %}

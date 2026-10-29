@@ -25,7 +25,7 @@ See [ONBOARDING.md](ONBOARDING.md) for step-by-step recipes (adding a job, proje
 
 - `content/`: the data (the only folder needed for everyday updates)
 - `schemas/`: JSON Schemas defining what each content file may contain
-- `src/`: Eleventy templates (`index.njk`, `_includes/`), `styles.css`, `script.js`, and template helpers in `src/lib/filters.js`
+- `src/`: Eleventy templates (`index.njk` for the home page, `section-page.njk` for one page per section, `404.njk`, `_includes/`), `styles.css`, `script.js`, and template helpers in `src/lib/filters.js`
 - `eleventy.config.js`: loads `content/*.json` as template data and registers the helpers
 - `tests/`: gate tests (see below)
 - `_site/`: build output (git-ignored; this is what gets deployed)
@@ -46,9 +46,9 @@ npm test         # full gate suite
 - `test:content`: every content file matches its schema, plus cross-field rules (e.g. contact links refer to real links, end dates aren't before start dates)
 - `test:unit`: unit tests for the template helpers (`node --test`)
 - `build`: Eleventy build into `_site/`
-- `test:html`: HTML validation of the built page (`html-validate`)
-- `test:links`: every local `href`/`src` in the built page resolves to a real file
-- `test:render`: every role, project, skill and certification from the JSON appears on the page; disabled sections are absent; the nav matches `site.json`
+- `test:html`: HTML validation of every built page (`html-validate`)
+- `test:links`: every local `href`/`src` on every built page resolves to a real file, and every `#anchor` matches an id
+- `test:render`: each enabled section has its own page and disabled ones don't; the home cards, header nav and Previous/Next links follow `site.json`; every role, project, skill and certification appears on its section's page
 - `test:privacy`: regression guard that fails if an email address or phone-number-shaped string appears in the sources (including JSON and templates) or the built output. The site intentionally shows no direct contact info, only GitHub and LinkedIn links.
 
 There's also a periodic (non-gate) check that hits every external link over the network:

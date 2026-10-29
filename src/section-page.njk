@@ -1,0 +1,30 @@
+---
+# One page per section with "tile": true in content/site.json, e.g. /experience/.
+pagination:
+  data: sectionPages
+  size: 1
+  alias: section
+permalink: "/{{ section.id }}/index.html"
+layout: base.njk
+headingLevel: 1
+eleventyComputed:
+  pageTitle: "{{ section.label }} — {{ profile.name }}"
+---
+  <div class="page-intro">
+    <div class="wrap">
+      <a class="back-link" href="/"><span aria-hidden="true">←</span> Home</a>
+    </div>
+  </div>
+
+{% include "sections/" + section.id + ".njk" %}
+
+  <nav class="pager" aria-label="More sections">
+    <div class="wrap pager-inner">
+      {%- if section.prev %}
+      <a class="pager-link pager-prev" href="{{ section.prev.id | sectionUrl }}"><span class="pager-label">Previous</span><span class="pager-title"><span aria-hidden="true">←</span> {{ section.prev.label }}</span></a>
+      {%- endif %}
+      {%- if section.next %}
+      <a class="pager-link pager-next" href="{{ section.next.id | sectionUrl }}"><span class="pager-label">Next</span><span class="pager-title">{{ section.next.label }} <span aria-hidden="true">→</span></span></a>
+      {%- endif %}
+    </div>
+  </nav>

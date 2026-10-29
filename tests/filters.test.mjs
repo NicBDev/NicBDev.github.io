@@ -13,6 +13,9 @@ import {
   personJsonLd,
   tileSections,
   sectionSummary,
+  withNeighbors,
+  sectionUrl,
+  absoluteUrl,
 } from '../src/lib/filters.js';
 
 test('formatMonth formats YYYY-MM and treats null as Present', () => {
@@ -158,4 +161,25 @@ test('sectionSummary handles several employers and singular counts', () => {
 test('sectionSummary prefers a configured description, and is empty for unknown sections', () => {
   assert.equal(sectionSummary({ id: 'projects', description: 'Things I built' }, summaryData), 'Things I built');
   assert.equal(sectionSummary({ id: 'talks' }, summaryData), '');
+});
+
+test('withNeighbors links each item to its previous and next item', () => {
+  const result = withNeighbors([
+    { id: 'about', label: 'About me', extra: 1 },
+    { id: 'skills', label: 'Skills' },
+    { id: 'contact', label: 'Contact me' },
+  ]);
+  assert.deepEqual(result.map((s) => [s.prev?.id ?? null, s.next?.id ?? null]), [
+    [null, 'skills'],
+    ['about', 'contact'],
+    ['skills', null],
+  ]);
+  assert.deepEqual(result[1].prev, { id: 'about', label: 'About me' });
+  assert.equal(result[0].extra, 1);
+});
+
+test('sectionUrl and absoluteUrl build page URLs', () => {
+  assert.equal(sectionUrl('experience'), '/experience/');
+  assert.equal(absoluteUrl('/experience/', 'https://example.test/'), 'https://example.test/experience/');
+  assert.equal(absoluteUrl('/', 'https://example.test/'), 'https://example.test/');
 });

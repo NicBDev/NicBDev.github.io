@@ -1,12 +1,14 @@
+{#- Heading levels shift with headingLevel (2 on the home page, 1 on a section's own page). #}
+{%- set h = headingLevel or 2 %}
   <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
     <div class="wrap">
-      <h2>{{ section.heading or section.label }}</h2>
+      <h{{ h }} class="section-title">{{ section.heading or section.label }}</h{{ h }}>
       {%- for employer in experience.employers %}
       {%- set span = employer.roles | employerSpan %}
 
       <div class="employer">
         <div class="employer-head">
-          <h3>{{ employer.name }}</h3>
+          <h{{ h + 1 }} class="employer-name">{{ employer.name }}</h{{ h + 1 }}>
           <p class="employer-meta">{{ span.start | dateRange(span.end) }} · {{ employer.roles.length | pluralize("role") }}</p>
         </div>
 
@@ -14,7 +16,7 @@
           {%- for role in employer.roles %}
           <li class="job">
             <div class="job-head">
-              <h4>{{ role.title }}</h4>
+              <h{{ h + 2 }} class="job-title">{{ role.title }}</h{{ h + 2 }}>
               <p class="job-dates">{{ role.start | dateRange(role.end) }}</p>
             </div>
             {%- if role.team %}

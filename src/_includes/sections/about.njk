@@ -1,6 +1,8 @@
+{#- Heading levels shift with headingLevel (2 on the home page, 1 on a section's own page). #}
+{%- set h = headingLevel or 2 %}
   <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
     <div class="wrap">
-      <h2>{{ section.heading or section.label }}</h2>
+      <h{{ h }} class="section-title">{{ section.heading or section.label }}</h{{ h }}>
       <div class="about-grid">
         <div class="about-text">
           {%- for paragraph in profile.about.paragraphs %}

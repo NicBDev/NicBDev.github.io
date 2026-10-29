@@ -4,15 +4,23 @@ import * as filters from './src/lib/filters.js';
 
 const CONTENT_DIR = 'content';
 
+function readContent(file) {
+  const { $schema, ...data } = JSON.parse(readFileSync(join(CONTENT_DIR, file), 'utf8'));
+  return data;
+}
+
 export default function (eleventyConfig) {
   // Each content/<name>.json becomes a global template variable called <name>.
   for (const file of readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.json'))) {
-    const name = basename(file, '.json');
-    eleventyConfig.addGlobalData(name, () => {
-      const { $schema, ...data } = JSON.parse(readFileSync(join(CONTENT_DIR, file), 'utf8'));
-      return data;
-    });
+    eleventyConfig.addGlobalData(basename(file, '.json'), () => readContent(file));
   }
+  // One entry per section that gets its own page (src/section-page.njk paginates over this).
+  // Backgrounds don't alternate on a single-section page, so alt is always off.
+  eleventyConfig.addGlobalData('sectionPages', () =>
+    filters
+      .withNeighbors(filters.tileSections(readContent('site.json').sections))
+      .map((section) => ({ ...section, alt: false })),
+  );
   eleventyConfig.addWatchTarget(CONTENT_DIR);
 
   eleventyConfig.addFilter('formatMonth', filters.formatMonth);
@@ -24,6 +32,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('navSections', filters.navSections);
   eleventyConfig.addFilter('tileSections', filters.tileSections);
   eleventyConfig.addFilter('sectionSummary', filters.sectionSummary);
+  eleventyConfig.addFilter('sectionUrl', filters.sectionUrl);
+  eleventyConfig.addFilter('absoluteUrl', filters.absoluteUrl);
   eleventyConfig.addFilter('findLink', filters.findLink);
   eleventyConfig.addFilter('personJsonLd', filters.personJsonLd);
 

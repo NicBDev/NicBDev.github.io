@@ -3,23 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ site.title }}</title>
+{%- set fullTitle = pageTitle or site.title %}
+{%- set pageUrl = page.url | absoluteUrl(site.url) %}
+<title>{{ fullTitle }}</title>
 <meta name="description" content="{{ site.description }}">
 <meta name="color-scheme" content="light dark">
-<link rel="canonical" href="{{ site.url }}">
+{%- if noindex %}
+<meta name="robots" content="noindex">
+{%- endif %}
+<link rel="canonical" href="{{ pageUrl }}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="{{ site.url }}">
-<meta property="og:title" content="{{ site.title }}">
+<meta property="og:url" content="{{ pageUrl }}">
+<meta property="og:title" content="{{ fullTitle }}">
 <meta property="og:description" content="{{ site.socialDescription }}">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231d4ed8%22/><text x=%2232%22 y=%2242%22 font-family=%22Arial,sans-serif%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>NB</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css">
+{%- if page.url == "/" %}
 <script type="application/ld+json">
 {{ { site: site, profile: profile, education: education, skills: skills } | personJsonLd | safe }}
 </script>
+{%- endif %}
 </head>
 <body>
 
@@ -33,6 +40,6 @@
 
 {% include "footer.njk" %}
 
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>
