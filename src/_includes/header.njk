@@ -1,9 +1,12 @@
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="logo" href="#top">{{ profile.name }}</a>
+    <a class="logo" href="/">{{ profile.name }}</a>
     <nav class="nav" aria-label="Primary">
-      {%- for section in site.sections | navSections %}
-      <a href="#{{ section.id }}">{{ section.label }}</a>
+      {%- for section in site.sections | tileSections %}
+      {%- if section.nav %}
+      {%- set url = section.id | sectionUrl %}
+      <a href="{{ url }}"{% if page.url == url %} aria-current="page"{% endif %}>{{ section.label }}</a>
+      {%- endif %}
       {%- endfor %}
     </nav>
     <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">

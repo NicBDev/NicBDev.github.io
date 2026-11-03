@@ -19,13 +19,15 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "label", "enabled", "nav"],
+        "required": ["id", "label", "enabled", "nav", "tile"],
         "properties": {
           "id": { "enum": ["hero", "about", "experience", "skills", "projects", "education", "contact"] },
           "label": { "type": "string", "minLength": 1, "description": "Nav link text, and the section heading unless heading is set." },
           "heading": { "type": "string", "minLength": 1, "description": "Optional section heading when it should differ from the nav label." },
           "enabled": { "type": "boolean" },
-          "nav": { "type": "boolean", "description": "Show a link to this section in the header nav." }
+          "nav": { "type": "boolean", "description": "Show a link to this section in the header nav." },
+          "tile": { "type": "boolean", "description": "Show a card for this section in the button grid below the hero." },
+          "description": { "type": "string", "minLength": 1, "description": "Card subtitle, used when no summary can be calculated from the content (e.g. About me)." }
         }
       }
     }

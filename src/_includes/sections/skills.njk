@@ -1,10 +1,12 @@
+{#- Heading levels shift with headingLevel (2 on the home page, 1 on a section's own page). #}
+{%- set h = headingLevel or 2 %}
   <section id="{{ section.id }}" class="section{% if section.alt %} alt{% endif %}">
     <div class="wrap">
-      <h2>{{ section.heading or section.label }}</h2>
+      <h{{ h }} class="section-title">{{ section.heading or section.label }}</h{{ h }}>
       <div class="skills-grid">
         {%- for group in skills.groups %}
         <div class="skill-group">
-          <h3>{{ group.name }}</h3>
+          <h{{ h + 1 }} class="group-title">{{ group.name }}</h{{ h + 1 }}>
           <ul class="tags">{% for item in group.items %}<li>{{ item }}</li>{% endfor %}</ul>
         </div>
         {%- endfor %}

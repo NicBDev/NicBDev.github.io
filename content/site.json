@@ -6,12 +6,12 @@
   "socialDescription": "Software Engineer at Apple focused on test automation, distributed systems validation, and AI-assisted engineering.",
   "sourceUrl": "https://github.com/NicBDev/NicBDev.github.io",
   "sections": [
-    { "id": "hero", "label": "Home", "enabled": true, "nav": false },
-    { "id": "about", "label": "About", "enabled": true, "nav": true },
-    { "id": "experience", "label": "Experience", "enabled": true, "nav": true },
-    { "id": "skills", "label": "Skills", "enabled": true, "nav": true },
-    { "id": "projects", "label": "Projects", "enabled": true, "nav": true },
-    { "id": "education", "label": "Education", "heading": "Education & Certifications", "enabled": true, "nav": true },
-    { "id": "contact", "label": "Contact", "enabled": true, "nav": true }
+    { "id": "hero", "label": "Home", "enabled": true, "nav": false, "tile": false },
+    { "id": "about", "label": "About me", "description": "My story and how I work", "enabled": true, "nav": true, "tile": true },
+    { "id": "experience", "label": "Experience", "enabled": true, "nav": true, "tile": true },
+    { "id": "skills", "label": "Skills", "enabled": true, "nav": true, "tile": true },
+    { "id": "projects", "label": "Projects", "enabled": true, "nav": true, "tile": true },
+    { "id": "education", "label": "Education", "heading": "Education & Certifications", "enabled": true, "nav": true, "tile": true },
+    { "id": "contact", "label": "Contact me", "enabled": true, "nav": true, "tile": true }
   ]
 }

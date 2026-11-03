@@ -83,3 +83,55 @@ export function personJsonLd({ site, profile, education, skills }) {
   // Escape "<" so content can never close the surrounding <script> tag.
   return JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
 }
+
+// Sections that get a card in the button grid, in config order.
+export function tileSections(sections) {
+  return enabledSections(sections).filter((s) => s.tile);
+}
+
+// One-line card subtitle. A `description` in site.json always wins; otherwise it's
+// calculated from the content so it never goes stale. Unknown sections get "".
+export function sectionSummary(section, data) {
+  if (section.description) return section.description;
+  const { experience, skills, projects, education, profile } = data;
+  switch (section.id) {
+    case 'experience': {
+      const employers = experience.employers;
+      const roles = employers.reduce((n, e) => n + e.roles.length, 0);
+      return employers.length === 1
+        ? `${pluralize(roles, 'role')} at ${employers[0].name}`
+        : `${pluralize(roles, 'role')} across ${pluralize(employers.length, 'employer')}`;
+    }
+    case 'skills': {
+      const items = skills.groups.reduce((n, g) => n + g.items.length, 0);
+      return `${pluralize(skills.groups.length, 'group')} · ${pluralize(items, 'skill')}`;
+    }
+    case 'projects':
+      return pluralize(projects.projects.length, 'project');
+    case 'education': {
+      const parts = education.degrees.map((d) => d.name);
+      if (education.certifications.length) parts.push(pluralize(education.certifications.length, 'certification'));
+      return parts.join(' · ');
+    }
+    case 'contact':
+      return profile.contact.links.map((item) => findLink(profile.links, item.linkId).label).join(' · ');
+    default:
+      return '';
+  }
+}
+
+// Attach each item's previous and next neighbour ({ id, label } or null), for prev/next links.
+export function withNeighbors(items) {
+  const brief = (item) => (item ? { id: item.id, label: item.label } : null);
+  return items.map((item, i) => ({ ...item, prev: brief(items[i - 1]), next: brief(items[i + 1]) }));
+}
+
+// URL of a section's own page, e.g. "experience" -> "/experience/".
+export function sectionUrl(id) {
+  return `/${id}/`;
+}
+
+// Absolute URL for canonical/og:url, e.g. ("/experience/", "https://x.dev/") -> "https://x.dev/experience/".
+export function absoluteUrl(path, base) {
+  return new URL(path, base).href;
+}

@@ -7,4 +7,9 @@ eleventyExcludeFromCollections: true
   <url>
     <loc>{{ site.url }}</loc>
   </url>
+  {%- for section in sectionPages %}
+  <url>
+    <loc>{{ section.id | sectionUrl | absoluteUrl(site.url) }}</loc>
+  </url>
+  {%- endfor %}
 </urlset>
