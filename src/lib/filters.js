@@ -74,7 +74,7 @@ export function personJsonLd({ site, profile, education, skills }) {
     name: profile.name,
     jobTitle: profile.jobTitle,
     url: site.url,
-    worksFor: { '@type': 'Organization', name: profile.company },
+    ...(profile.company && { worksFor: { '@type': 'Organization', name: profile.company } }),
     address: { '@type': 'PostalAddress', addressLocality: profile.location },
     sameAs: profile.links.filter((l) => l.id !== 'resume').map((l) => l.url),
     alumniOf: education.degrees.map((d) => ({ '@type': 'CollegeOrUniversity', name: d.school })),

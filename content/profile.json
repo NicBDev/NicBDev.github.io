@@ -2,7 +2,6 @@
   "$schema": "../schemas/profile.schema.json",
   "name": "Nicholas Burt",
   "jobTitle": "Software Engineer",
-  "company": "Apple",
   "lead": "I'm a software engineer with experience spanning Apple's engineering and customer systems groups. My work focuses on Swift/XCUI test automation, data integrity across distributed service pipelines, and behavioral validation for AI-assisted systems, backed by a BS in Computer Science and full-stack cloud development",
   "location": "Santa Clara, CA area",
   "educationSummary": "B.S. Computer Science, Sacramento State",
@@ -13,10 +12,13 @@
   ],
   "about": {
     "paragraphs": [
-      "I fell in love with programming when I learned how to automate away repetitive tasks at work. Back then, I didn’t know much about software development, but I could immediately see the power in handing labor over to code. My earliest automations were crude: direct mouse and keyboard manipulations and quick JavaScript snippets. They broke constantly. A dropped network connection, a slight shift in the OS or UI, or an unexpected data type would bring everything down. That friction taught me an essential lesson early on: writing good software is challenging not because of syntax, but because it has to contend with the real world in all its messy glory.",
-      "Studying Computer Science transformed my practical curiosity into formal engineering. I learned how to represent the physical world through abstract models and define truth inside closed systems. I explored the creative capabilities of game programming, studied coordinated communication protocols across networks, and learned to manage conceptual complexity through object-oriented design.",
-      "I graduated knowing I had built a strong foundation, but also convinced that there was still so much more to master. Moving into enterprise software development, I see how much that balance really counts. At enterprise scale, it is no longer just about writing code that works in isolation. It is about building resilient, maintainable systems that can absorb unexpected failures, adapt to evolving scale, and deliver dependability where it matters most."  
-      ],
+      "My first programs, before I knew anything about software development, were crude: direct mouse and keyboard manipulation and quick JavaScript snippets. They broke constantly, a small change in the OS or UI, or an unexpected data type would bring everything down. But when I figured something out, saved myself some work, oh man what a feeling!",
+      "That taught me an essential lesson early: writing good software is hard not because of syntax, but because it has to contend with the real world in all its messy glory.",
+      "From my first if statement I was excited about software development. I could see how this control structure could be built out to make something truly smart.",
+      "I wanted to know more about how people build reliable software and how I could do the same, so while working full time in Customer Service for Apple, I began pursuing a degree in computer science. I learned about how early computers required machine code and long tedious process of inputting binary code. Moved step by step abstracted further and further.  One of my favorite classes was 3D game programming. Starting from a blank canvas, you create an object, the world around it, the physics, and the controls, while the GPU makes millions of small calculations to put what you envision on screen. That class is where I truly understood why concepts like objects exist in programming.",
+      "Since then, I’ve applied those ideas at Apple, where I’ve worked for 15 years. I started in customer support, and I recently completed two engineering rotations. In one, I automated end-to-end tests for AppleCare’s purchase flows inside a large existing codebase. In the other, I maintained Python automation for prototype modem hardware. For my capstone, I helped extend an Air National Guard scheduling app and led its migration off AWS to a self-hosted, containerized deployment.",
+      "AI has taken a large role in software development. It can be a little unsettling to watch the walls of specialized knowledge flatten so quickly, but I find it more exciting than scary. I think AI does two things well: automation and augmentation. Automation frees you from tasks that keep you from the work you enjoy. Augmentation lets you do things you couldn’t do before, because you lacked the skill, technique, or knowledge. I use tools like Claude Code for both, and I review and test everything they produce, because the real world is still messy."
+    ],
     "facts": [
       { "label": "Role", "value": "Software Engineer, IS&T Customer Systems @ Apple" },
       { "label": "Location", "value": "Santa Clara, CA area" },
