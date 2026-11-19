@@ -114,6 +114,18 @@ test('personJsonLd builds a schema.org Person and escapes "<"', () => {
   assert.equal(data.alumniOf[0].name, 'State U');
 });
 
+test('personJsonLd leaves out worksFor when there is no company', () => {
+  const data = JSON.parse(
+    personJsonLd({
+      site: { url: 'https://example.test/' },
+      profile: { name: 'P', jobTitle: 'Engineer', location: 'X', links: [] },
+      education: { degrees: [] },
+      skills: { groups: [] },
+    }),
+  );
+  assert.equal('worksFor' in data, false);
+});
+
 test('tileSections keeps enabled sections with tile: true, in config order', () => {
   const config = [
     { id: 'hero', enabled: true, nav: false, tile: false },

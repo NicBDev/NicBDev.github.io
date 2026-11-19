@@ -124,7 +124,7 @@ h1, h2, h3, h4, h5 { font-weight: 700; margin: 0; letter-spacing: -0.02em; line-
 }
 
 /* Hero */
-.hero { padding: 112px 0 40px; }
+.hero { padding: 40px 0 40px; }
 main > .hero:last-child { padding-bottom: 96px; }
 .eyebrow {
   display: inline-block;
@@ -371,7 +371,7 @@ main > .hero:last-child { padding-bottom: 96px; }
   .nav.nav-open { display: flex; }
   .nav a { padding: 14px 24px; border-top: 1px solid var(--border); }
   .nav-toggle { display: flex; }
-  .hero { padding: 72px 0 24px; }
+  .hero { padding: 40px 0 24px; }
   .section-tiles { margin-top: 36px; }
   .page-intro { padding-top: 24px; }
   .pager-link { flex: 1 1 100%; min-width: 0; }
